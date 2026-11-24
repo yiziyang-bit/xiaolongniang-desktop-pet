@@ -1,0 +1,56 @@
+appId: io.github.xiaolongniang.desktop-pet
+productName: 小龙娘桌宠
+executableName: XiaolongniangDesktopPet
+asar: true
+electronLanguages:
+  - zh-CN
+  - en-US
+directories:
+  output: dist-app
+  buildResources: build
+
+files:
+  - dist/**/*
+  - dist-electron/**/*
+  - package.json
+  - '!**/*.map'
+  - '!**/*.ts'
+
+extraFiles:
+  - from: ../使用说明与功能介绍.html
+    to: 使用说明与功能介绍.html
+  - from: ../使用说明与功能介绍.md
+    to: 使用说明与功能介绍.md
+
+extraResources:
+  - from: ../LICENSE
+    to: LICENSE
+  - from: ../ASSETS.md
+    to: ASSETS.md
+  - from: ../使用说明与功能介绍.html
+    to: 使用说明与功能介绍.html
+  - from: ../使用说明与功能介绍.md
+    to: 使用说明与功能介绍.md
+  - from: scripts
+    to: scripts
+    filter:
+      - foreground-window.ps1
+      - clone-tts-worker.py
+  - from: build
+    to: build
+    filter:
+      - icon.ico
+      - icon.png
+
+win:
+  target: nsis
+  icon: build/icon.ico
+  artifactName: XiaolongniangDesktopPet-${version}-Windows-${arch}-Setup.${ext}
+
+nsis:
+  oneClick: false
+  perMachine: false
+  allowToChangeInstallationDirectory: true
+  shortcutName: 小龙娘桌宠（公开版）
+  createDesktopShortcut: true
+  createStartMenuShortcut: true

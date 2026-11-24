@@ -1,0 +1,27 @@
+app/node_modules/
+app/dist/
+app/dist-electron/
+app/dist-app/
+app/release/
+app/.vite/
+app/.cache/
+*.log
+.DS_Store
+Thumbs.db
+app/.env
+app/.env.local
+
+# Optional local resources.
+app/live2d/*
+!app/live2d/.gitkeep
+app/hatch-pet/
+app/VOSK/
+app/notify/
+app/public/
+app/.env.*
+
+# 本地运行数据 / python 缓存
+app/work/
+app/user-data/
+app/scripts/__pycache__/
+*.pyc

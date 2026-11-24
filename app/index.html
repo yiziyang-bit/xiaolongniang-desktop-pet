@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- PIXI 默认用 new Function() 编 shader,需要 'unsafe-eval';自用 app 接受。
+         若以后想去掉,用 `import '@pixi/unsafe-eval'` 替代方案。 -->
+    <!-- worker-src 允许 blob: 是 vosk-browser 必需 — 它把 WASM worker 打成 blob URL 动态加载。
+         script-src 同时加 blob: 允许 worker 内部 importScripts(blob:xxx) 继续加载自身代码。 -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-eval' blob: pet://cubism-core/live2dcubismcore.min.js; worker-src 'self' blob:; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: pet:; media-src 'self' blob: pet:; connect-src 'self' pet: ws: wss: https: blob: data:; font-src 'self' data:; object-src 'none'; base-uri 'none'; frame-src 'none';" />
+    <title>小龙娘桌宠</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

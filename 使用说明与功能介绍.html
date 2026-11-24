@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>小龙娘桌宠 v0.1.1 · 快速上手与功能介绍</title>
+  <style>
+    :root {
+      --bg: #f6f8fc;
+      --card: #ffffff;
+      --text: #1f2430;
+      --muted: #5c6478;
+      --accent: #2b6cb0;
+      --accent-soft: #ebf4ff;
+      --border: #e3e8f2;
+      --ok-bg: #ecfdf5;
+      --ok-border: #a7f3d0;
+      --ok-text: #065f46;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Microsoft YaHei UI", "PingFang SC", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+    .hero {
+      background: linear-gradient(135deg, #1e3a5f 0%, #2b6cb0 58%, #4a90e2 100%);
+      color: #fff;
+      padding: 40px 24px 34px;
+      text-align: center;
+    }
+    .hero h1 {
+      margin: 0 0 10px;
+      font-size: 28px;
+      letter-spacing: 0.5px;
+    }
+    .hero p {
+      margin: 0 auto;
+      max-width: 720px;
+      font-size: 15px;
+      opacity: 0.92;
+    }
+    .nav-bar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 20px;
+    }
+    .nav-bar a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 13px;
+      padding: 5px 14px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.16);
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      transition: background 0.15s;
+    }
+    .nav-bar a:hover {
+      background: rgba(255, 255, 255, 0.28);
+    }
+    .container {
+      max-width: 920px;
+      margin: 24px auto 56px;
+      padding: 0 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 24px 26px;
+      box-shadow: 0 4px 14px rgba(24, 36, 64, 0.04);
+    }
+    h2 {
+      margin: 0 0 14px;
+      font-size: 20px;
+      color: #1a365d;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 10px;
+    }
+    h3 {
+      margin: 18px 0 8px;
+      font-size: 16px;
+      color: #243b55;
+    }
+    p, li {
+      font-size: 14.5px;
+      color: var(--text);
+    }
+    ul, ol {
+      margin: 8px 0;
+      padding-left: 22px;
+    }
+    li { margin-bottom: 6px; }
+    code {
+      font-family: Consolas, "SFMono-Regular", monospace;
+      font-size: 13px;
+      background: #f0f4f9;
+      color: #1e4e8c;
+      padding: 2px 6px;
+      border-radius: 5px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 10px 0;
+      font-size: 14px;
+    }
+    th, td {
+      text-align: left;
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    th {
+      background: #f8fafd;
+      color: #334e68;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    .tip {
+      margin-top: 12px;
+      padding: 12px 15px;
+      background: var(--accent-soft);
+      border-left: 4px solid var(--accent);
+      border-radius: 8px;
+      font-size: 13.5px;
+      color: #1e3a5f;
+    }
+    .ok-box {
+      margin-top: 12px;
+      padding: 12px 15px;
+      background: var(--ok-bg);
+      border: 1px solid var(--ok-border);
+      border-radius: 8px;
+      font-size: 13.5px;
+      color: var(--ok-text);
+    }
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 12px;
+      margin-top: 10px;
+    }
+    .step-item {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px 16px;
+      background: #fafcff;
+    }
+    .step-badge {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--accent);
+      background: var(--accent-soft);
+      padding: 2px 9px;
+      border-radius: 999px;
+      margin-bottom: 6px;
+    }
+    .faq-q {
+      font-weight: 600;
+      color: #1a365d;
+      margin-top: 12px;
+      margin-bottom: 4px;
+    }
+    .faq-a {
+      margin: 0 0 10px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .footer {
+      text-align: center;
+      font-size: 13px;
+      color: var(--muted);
+      padding: 10px 0 20px;
+    }
+    .warn-box {
+      margin-top: 12px;
+      padding: 12px 15px;
+      background: #fffbeb;
+      border: 1px solid #fde68a;
+      border-left: 4px solid #d97706;
+      border-radius: 8px;
+      font-size: 13.5px;
+      color: #78350f;
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <h1>🐉 小龙娘桌宠 · 快速上手与功能介绍</h1>
+    <p>版本 v0.1.1 ｜ 开箱即用的 3D 视差桌面陪伴 · 支持自由接入 AI 对话、API 语音识别、读文档识图与编程辅助</p>
+    <nav class="nav-bar">
+      <a href="#quickstart">⚡ 1 分钟上手</a>
+      <a href="#ai-chat">💬 接入 AI 对话</a>
+      <a href="#voice">🎙️ 语音输入与朗读</a>
+      <a href="#advanced">✨ 进阶黑科技</a>
+      <a href="#env-notes">🖥️ 运行环境与注意事项</a>
+      <a href="#faq">❓ 常见问题</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section id="quickstart" class="card">
+      <h2>⚡ 一、1 分钟快速上手（装好即玩，无需联网）</h2>
+      <p>安装并打开桌宠后，小龙娘会直接出现在你的桌面上。无需注册账号，立刻可以体验以下互动：</p>
+      <table>
+        <thead>
+          <tr>
+            <th>你想做的操作</th>
+            <th>鼠标动作</th>
+            <th>效果说明</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>摸摸头互动</strong></td>
+            <td>左键单击<strong>头顶区域</strong></td>
+            <td>第 1 下眨眼害羞 → 第 2 下恢复气泡 → 第 3 下傲娇生气（30 秒后自动平复）</td>
+          </tr>
+          <tr>
+            <td><strong>自由拖动位置</strong></td>
+            <td>左键按住<strong>身体</strong>拖动</td>
+            <td>拖到屏幕任意角落；怕误碰可在「设置」打开<strong>锁定模型位置</strong></td>
+          </tr>
+          <tr>
+            <td><strong>唤出功能菜单</strong></td>
+            <td>在小龙娘身上点<strong>右键</strong></td>
+            <td>打开 💬 对话、切换角色、调节大小（30%–300%）、AI 设置、通用设置</td>
+          </tr>
+          <tr>
+            <td><strong>点击桌面后方窗口</strong></td>
+            <td>直接点她周围空白处</td>
+            <td>透明区域自动鼠标穿透，绝不遮挡桌面图标或其它软件点击</td>
+          </tr>
+          <tr>
+            <td><strong>隐藏 / 退出桌宠</strong></td>
+            <td>点右下角任务栏<strong>托盘图标</strong></td>
+            <td>左键一键显示/隐藏；右键可「只打开对话」「查看本说明」或「退出」</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="tip">
+        <strong>贴心陪伴细节：</strong>小龙娘的眼神和身姿会随鼠标呈现 3D 景深视差跟随；当你<strong>全屏看剧或打游戏</strong>时她会自动隐身避让，退出全屏再自动回来；电脑空闲满 5 分钟她会安静打盹冒出 💤，摸摸头就醒啦！
+      </div>
+    </section>
+
+    <section id="ai-chat" class="card">
+      <h2>💬 二、3 步接入 AI 聊天对话</h2>
+      <p>小龙娘支持接入任意 <strong>OpenAI 兼容接口</strong>（DeepSeek、硅基流动、智谱 GLM、通义千问、Kimi、OpenAI、OpenRouter 或本地 Ollama）：</p>
+      <div class="steps-grid">
+        <div class="step-item">
+          <span class="step-badge">第 1 步 · 打开 AI 设置</span>
+          <div>在小龙娘身上点<strong>右键 → AI 设置</strong>，在顶部「供应商管理」点 <strong>+ 添加</strong>，一键套用常用服务商模板或手动填入接口地址。</div>
+        </div>
+        <div class="step-item">
+          <span class="step-badge">第 2 步 · 粘贴 API Key</span>
+          <div>填入你自己的 <code>API Key</code>（通过 Windows 系统级安全加密保存在本机，不会明文写入配置文件）。</div>
+        </div>
+        <div class="step-item">
+          <span class="step-badge">第 3 步 · 选模型并保存</span>
+          <div>选择推荐模型或点击「拉取模型」，最后点面板底部的<strong>「保存」</strong>，回到右键菜单点 <strong>💬 对话</strong>即可开聊！</div>
+        </div>
+      </div>
+
+      <h3>对话框里的宝藏功能</h3>
+      <ul>
+        <li><strong>流式打字 + 随时叫停</strong>：实时逐字回复，生成途中点击停止按钮即可立即中断请求。</li>
+        <li><strong>富文本与图表显示</strong>：支持代码语法高亮与复制、LaTeX 数学公式、提示卡片及 Mermaid 流程图渲染。</li>
+        <li><strong>识图截屏与文档解析</strong>：支持一键<strong>全屏截图</strong>（自动隐去桌宠自身）、粘贴图片，以及上传 <strong>PDF、Word (.docx)、Excel (.xlsx)、Markdown、代码文件</strong> 让小龙娘帮你总结分析。</li>
+        <li><strong>专属人设与多套技能</strong>：可在「AI 设置」中自由定制角色的称呼、性格与说话口吻，或切换不同场景的系统提示词。</li>
+      </ul>
+    </section>
+
+    <section id="voice" class="card">
+      <h2>🎙️ 三、语音输入（动嘴聊天）与语音朗读</h2>
+      <p>打开 <strong>右键 → 设置 → 语音输入</strong>，支持<strong>云端 API 接口</strong>与<strong>本地离线模型</strong>两种语音转文字方案：</p>
+
+      <h3>方案 A：连接 API 接口（推荐 · 自由选模型、免下离线包）</h3>
+      <ol>
+        <li>在「语音识别模型」卡片顶部点击 <strong>「连接 API 接口」</strong>。</li>
+        <li>在「快捷预设」中选择服务商（如<strong>硅基流动</strong>的 <code>FunAudioLLM/SenseVoiceSmall</code>、<strong>OpenAI</strong> 的 <code>gpt-4o-mini-transcribe</code> / <code>whisper-1</code>、<strong>Groq</strong>、<strong>智谱 GLM-ASR</strong> 或本地服务），也可点击<strong>「复用对话 API」</strong>直接带入对话接口地址与密钥，或手填任意兼容 <code>/audio/transcriptions</code> 的地址和模型名。</li>
+        <li>点击 <strong>「测试接口」</strong>，出现绿色 <code>✓ 接口连接可用</code> 提示即自动保存生效！</li>
+      </ol>
+
+      <h3>方案 B：本地离线模型（Vosk · 断网可用）</h3>
+      <ol>
+        <li>保持在 <strong>「本地离线模型 (Vosk)」</strong> 标签，点击<strong>「导入小模型 ZIP」</strong>导入下载好的 Vosk 模型包（如 <code>vosk-model-small-cn-0.22.zip</code>）。</li>
+      </ol>
+
+      <div class="ok-box">
+        <strong>怎么开始说话？</strong> 配置好上面任一方案后，打开正下方的 <strong>「对话框语音输入」</strong> 开关。随后打开聊天窗口点击 <strong>🎤 麦克风按钮</strong>，直接说话并自然停顿约 1 秒，文字就会自动识别并发送给小龙娘（再次点击 🎤 可取消本次录音）。
+      </div>
+
+      <h3>小龙娘语音回复（TTS 朗读）</h3>
+      <ul>
+        <li>默认开启 <strong>「小龙娘语音回复」</strong>，直接使用 Windows 本地语音朗读回答，支持自定义音色、语速和音量。</li>
+        <li>进阶用户也可在语音面板中指定本机 <strong>F5-TTS 克隆声</strong>资源目录，未就绪时会自动无缝回退系统语音。</li>
+      </ul>
+    </section>
+
+    <section id="advanced" class="card">
+      <h2>✨ 四、更多进阶功能一览</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>功能名称</th>
+            <th>设置位置</th>
+            <th>作用与亮点</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>📋 剪贴板智能建议</strong></td>
+            <td>默认开启</td>
+            <td>复制长文章（≥200 字）或网址链接时，小龙娘身旁会弹出 3 秒快捷小气泡，一键总结文本或解读网页。</td>
+          </tr>
+          <tr>
+            <td><strong>🧠 长期记忆管理</strong></td>
+            <td>设置 → 长期记忆</td>
+            <td>跨对话记住你的习惯、偏好与重要纪念日；支持随时展开查看、手动添加、编辑或删除任意记忆。</td>
+          </tr>
+          <tr>
+            <td><strong>🕒 主动互动增强</strong></td>
+            <td>设置 → 主动互动增强</td>
+            <td>支持早中晚问候、整点报时、节日祝福、备忘录提醒，以及切换应用或长时间专注时的暖心搭话。</td>
+          </tr>
+          <tr>
+            <td><strong>💻 编码（增强）模式</strong></td>
+            <td>设置 → 编码(增强)模式</td>
+            <td>聊天窗切换为底部宽屏可拉伸消息流，支持历史编辑与快捷切模型，并自动开启内置编程技能库。</td>
+          </tr>
+          <tr>
+            <td><strong>🛠️ MCP 本地工具</strong></td>
+            <td>设置 → MCP 工具</td>
+            <td>内置免装 Node 的本地文件系统工具，并可挂载更多外部 MCP 服务；写文件操作默认需你弹窗确认。</td>
+          </tr>
+          <tr>
+            <td><strong>🤝 视觉与模型协同</strong></td>
+            <td>设置 → 模型协同</td>
+            <td>主模型不支持看图（如纯文本模型）时，可自动先请视觉辅助模型描述图片，再交回主模型作答。</td>
+          </tr>
+          <tr>
+            <td><strong>🎭 导入更多角色</strong></td>
+            <td>设置 → 角色管理</td>
+            <td>支持导入 <code>pet.json + spritesheet.webp</code> 的 Hatch-Pet 角色，或放入官方运行时后导入 Live2D 模型。</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="env-notes" class="card">
+      <h2>🖥️ 五、运行环境说明与注意事项（新电脑必看）</h2>
+
+      <h3>1. 全新电脑可以直接用吗？</h3>
+      <div class="ok-box">
+        <strong>零额外环境依赖，装好即用！</strong> 只要是 <strong>64 位 Windows 10 / Windows 11</strong> 电脑，直接运行安装包即可。安装包已自带完整的渲染引擎与内置运行时，普通用户<strong>无需</strong>安装 Node.js、Python、Java 或 .NET 环境，即可完整使用：3D 视差桌面互动（老旧显卡不支持 WebGL 时会自动平滑降级为高清静态原画兜底，绝不白屏）、AI 聊天、截屏识图、PDF/Word/Excel/代码文档解析、API 语音识别与 Vosk 离线语音输入、Windows 系统自带语音朗读，以及内置本地文件系统工具。
+      </div>
+
+      <h3>2. 仅在开启以下「高阶可选扩展」时，才需额外准备</h3>
+      <p>以下均为<strong>默认关闭的可选项</strong>，不配置也完全不影响日常陪伴与聊天：</p>
+      <table>
+        <thead>
+          <tr>
+            <th>可选高阶功能</th>
+            <th>需要额外准备的环境或文件</th>
+            <th>未准备时的自动表现</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>F5-TTS 本地克隆声朗读</strong></td>
+            <td>本机需自备 Python + PyTorch + <code>f5_tts</code> 环境及参考音频权重（建议配备独立显卡）</td>
+            <td>自动无缝回退到 Windows 系统自带语音朗读，不会报错</td>
+          </tr>
+          <tr>
+            <td><strong>第三方外部 MCP 插件</strong></td>
+            <td>若手动添加通过 <code>npx</code> 或 <code>uvx</code> 拉取的社区插件，电脑需安装 Node.js 或 Python/uv</td>
+            <td>不影响日常对话和桌宠内置的文件系统工具</td>
+          </tr>
+          <tr>
+            <td><strong>导入 Live2D 角色</strong></td>
+            <td>无需装编程环境，但需从官方免费获取 <code>live2dcubismcore.min.js</code> 放入桌宠 Live2D 资源目录</td>
+            <td>默认小龙娘与 Hatch-Pet 角色完全正常使用</td>
+          </tr>
+          <tr>
+            <td><strong>本地大模型（Ollama 等）</strong></td>
+            <td>若不走云端 API 而改连本机大模型 / 本地 Whisper，需自行启动对应本地服务</td>
+            <td>使用云端 API Key 时无需任何本机模型服务</td>
+          </tr>
+          <tr>
+            <td><strong>修改源码重新编译打包</strong></td>
+            <td>仅开发者修改 <code>Source.zip</code> 源码重新打包时，需安装 Node.js 22 或 24</td>
+            <td>普通使用者直接运行 <code>Setup.exe</code>，无需安装</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>3. 安装与使用注意事项</h3>
+      <div class="warn-box">
+        <div><strong>• 首次安装蓝框提示（Windows SmartScreen）：</strong>由于个人开源软件未购买商业数字签名证书，新电脑首次运行安装程序若弹出蓝色的「Windows 已保护你的电脑」提示，点击弹窗里的 <strong>「更多信息」→「仍要运行」</strong> 即可正常安装。</div>
+        <div style="margin-top: 6px;"><strong>• 麦克风系统权限：</strong>使用语音输入前，请确认 Windows「设置 → 隐私和安全性 → 麦克风」中已开启“允许桌面应用访问你的麦克风”。</div>
+        <div style="margin-top: 6px;"><strong>• 网络与代理：</strong>AI 对话与 API 语音识别会自动遵循当前系统的网络与代理配置；纯桌面互动、Vosk 离线听写与系统朗读无需联网。</div>
+      </div>
+    </section>
+
+    <section id="faq" class="card">
+      <h2>❓ 六、常见问题速查（FAQ）</h2>
+
+      <div class="faq-q">1. 小龙娘被拖到副屏或屏幕边缘找不到了怎么办？</div>
+      <p class="faq-a">左键或右键点击右下角任务栏托盘图标选「显示桌宠」，或者重启一次程序，桌宠会自动校准屏幕边界并回到可见区域内。</p>
+
+      <div class="faq-q">2. 为什么打开对话框后没看到 🎤 语音按钮？</div>
+      <p class="faq-a">请确认已在「右键 → 设置 → 语音输入」中打开了<strong>「对话框语音输入」</strong>开关，并在上方的「语音识别模型」中配好了 API 接口或导入了 Vosk 模型。</p>
+
+      <div class="faq-q">3. 我的 API Key 和聊天记录保存在哪里？重装会丢吗？</div>
+      <p class="faq-a">配置、记忆与导入的角色保存在本机 <code>%APPDATA%\XiaolongniangDesktopPet</code> 目录，覆盖升级不会丢失；所有 API Key 均经由 Windows 系统凭据加密存储，安全可靠。</p>
+
+      <div class="faq-q">4. 以后想再看这份说明怎么找？</div>
+      <p class="faq-a">这份说明已随安装包一并保存在桌宠安装目录中（<code>使用说明与功能介绍.html</code>），你也可以随时通过<strong>右下角托盘右键菜单</strong>或<strong>设置面板底部按钮</strong>一键打开！</p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div>小龙娘原立绘由抖音作者 <strong>很细嘟嘟</strong> 创作并授权本桌宠项目使用 ｜ 项目基于 Desktop-pet，代码遵循 MIT 许可证</div>
+  </footer>
+</body>
+</html>

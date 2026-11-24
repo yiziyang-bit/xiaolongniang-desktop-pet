@@ -1,0 +1,25 @@
+node_modules
+dist
+dist-electron
+release
+.vite
+.cache
+*.log
+.DS_Store
+Thumbs.db
+.env
+.env.local
+.electron-cache/
+.npm-cache/
+electron-run*.log
+electron-smoke.cjs
+
+# Large/local model assets.
+# Keep the Live2D folder, but do not upload models inside it.
+live2d/*
+!live2d/.gitkeep
+
+# 本地运行数据 / 预览产物 / python 缓存 / 未引用旧资产（磁盘保留，不入库）
+work/
+scripts/__pycache__/
+*.pyc
